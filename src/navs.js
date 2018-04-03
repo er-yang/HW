@@ -1,9 +1,10 @@
 // <!-- auto generated navs start -->
 const autoGenHeaderNavs = [];
-
 const autoGenAsideNavs = [
-  { text: "page3", to: "/page3", icon: "nav-list" },
-  { text: "login", to: "/login", icon: "nav-list" }
+  { text: 'page3', to: '/page3', icon: 'nav-list' },
+  { text: 'login', to: '/login', icon: 'nav-list' },
+  { text: 'Nav5', to: '/page5', icon: 'nav-list' },
+  { text: 'Nav6', to: '/page6', icon: 'nav-list' },
 ];
 
 // <!-- auto generated navs end -->
