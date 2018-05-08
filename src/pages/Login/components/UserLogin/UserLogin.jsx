@@ -8,6 +8,7 @@ import {
 } from '@icedesign/form-binder';
 import IceIcon from '@icedesign/icon';
 import './UserLogin.scss';
+import {browserHistory} from 'react-router';
 
 const { Row, Col } = Grid;
 
@@ -42,7 +43,8 @@ export default class UserLogin extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.refs.form.validateAll((errors, values) => {
-      console.log('values', values);
+      console.log('values', values, this);
+      browserHistory.push('/');
     });
   };
 
@@ -57,7 +59,7 @@ export default class UserLogin extends Component {
         />
         <div style={styles.contentWrapper}>
           <h2 style={styles.slogan}>
-            欢迎使用 <br /> ICE 内容管理系统
+            欢迎使用 <br /> 路面管理系统
           </h2>
           <div style={styles.formContainer}>
             <h4 style={styles.formTitle}>登录</h4>

@@ -2,9 +2,9 @@
 const autoGenHeaderNavs = [];
 const autoGenAsideNavs = [
   { text: 'page3', to: '/page3', icon: 'nav-list' },
-  { text: 'login', to: '/login', icon: 'nav-list' },
-  { text: 'Nav5', to: '/page5', icon: 'nav-list' },
-  { text: 'Nav6', to: '/page6', icon: 'nav-list' },
+  // { text: 'login', to: '/login', icon: 'nav-list' },
+  { text: '视频监控', to: '/page5', icon: 'nav-list' },
+  // { text: 'Nav6', to: '/page6', icon: 'nav-list' },
 ];
 
 // <!-- auto generated navs end -->
@@ -17,14 +17,14 @@ const customHeaderNavs = [
   },
   {
     text: '反馈',
-    to: 'https://github.com/alibaba/ice',
+    to: '',
     external: true,
     newWindow: true,
     icon: 'message',
   },
   {
     text: '帮助',
-    to: 'https://alibaba.github.io/ice',
+    to: '',
     external: true,
     newWindow: true,
     icon: 'bangzhu',
@@ -48,11 +48,11 @@ const customAsideNavs = [
     icon: 'shezhi',
     children: [
       {
-        text: '基本设置',
+        text: '人员管理',
         to: '/base',
       },
       {
-        text: '评论设置',
+        text: '角色管理',
         to: '/comment',
       },
     ],
