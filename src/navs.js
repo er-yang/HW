@@ -43,6 +43,11 @@ const customAsideNavs = [
     icon: 'yonghu',
   },
   {
+    text: '摄像头管理',
+    to: '/camera',
+    icon: 'yonghu',
+  },
+  {
     text: '系统设置',
     to: '/setting',
     icon: 'shezhi',

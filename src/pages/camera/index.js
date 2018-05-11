@@ -4,11 +4,10 @@ import IceContainer from '@icedesign/container';
 import DataBinder from '@icedesign/data-binder';
 import axios from 'axios';
 import {Link} from 'react-router';
-import './user.scss';
 
 const Column = Table.Column;
 
-export default class User extends Component {
+export default class Camera extends Component {
 
     constructor() {
         super();
@@ -23,7 +22,6 @@ export default class User extends Component {
     }
     rowOnChange(ids, record) {
         let { rowSelection } = this.state;
-        console.log("ids =",ids," rescord", record);
         rowSelection.selectedRowKeys = ids;
         this.setState({ rowSelection });
 
@@ -33,14 +31,14 @@ export default class User extends Component {
        this.fecthdata(); 
     }
     fecthdata () {
-        axios.get('http://localhost:8080/user')
+        axios.get('http://localhost:8080/camera')
             .then((response) => {
                 console.log(response);
                 this.setState({dataSource: response.data});
             })
     }
     deleteUser (id) {
-        axios.get('http://localhost:8080/user/delete/'+id)
+        axios.get('http://localhost:8080/camera/delete/'+id)
             .then((response) => {
                 if (response.data) {
                     console.log("success");
@@ -53,17 +51,15 @@ export default class User extends Component {
         return (  
             <IceContainer>
                 <div>
-                    <Link to='/user/add'><Icon type="add" /></Link>
+                    <Link to='/camera/add'><Icon type="add" /></Link>
                 </div>
                 <Table 
                     rowSelection={this.state.rowSelection}
-                    primaryKey="accountID"
+                    primaryKey="cameraID"
                     dataSource={this.state.dataSource||[]}>
-                    <Column title="姓名" dataIndex="accountName" ></Column>
-                    <Column title="工号" dataIndex="accountCode" />
-                    <Column title="电话" dataIndex="phone" ></Column>
-                    <Column title="部门" dataIndex="accountName" ></Column>
-                    <Column title="状态" dataIndex="state" ></Column>
+                    <Column title="名称" dataIndex="name" ></Column>
+                    <Column title="地址" dataIndex="address" />
+                    <Column title="ip" dataIndex="ip" ></Column>
                     <Column title="备注" dataIndex="remark" />
                     <Column cell={(value, index, record) => { 
                         return <div><span className="table_cell-option" onClick = {this.deleteUser.bind(this, record.accountID)}><Icon type="ashbin" /></span><span className="table_cell-option"><Icon type="edit" /></span></div>
@@ -73,4 +69,4 @@ export default class User extends Component {
             </IceContainer>
         )
     }
-} 
+}
