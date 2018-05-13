@@ -48,6 +48,16 @@ const customAsideNavs = [
     icon: 'yonghu',
   },
   {
+    text: '地图导航',
+    to: '/amap',
+    icon: 'yonghu',
+  },
+  {
+    text: '部门管理',
+    to: '/department',
+    icon: 'yonghu',
+  },
+  {
     text: '系统设置',
     to: '/setting',
     icon: 'shezhi',

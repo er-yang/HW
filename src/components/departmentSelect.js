@@ -1,72 +1,53 @@
 import React, { Component } from 'react';
-import {Table, Pagination,Button,Icon} from '@icedesign/base';
-import IceContainer from '@icedesign/container';
-import DataBinder from '@icedesign/data-binder';
+import {Select} from '@icedesign/base';
 import axios from 'axios';
-import {Link} from 'react-router';
 
-const Column = Table.Column;
+export default class DepartmentSelect extends Component {
 
-export default class Department extends Component {
-
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             dataSource: [],
-            rowSelection: {
-                onChange: this.rowOnChange.bind(this),
-                selectedRowKeys: []
-            }
-
+            departmentID: ""
         }
     }
-    rowOnChange(ids, record) {
-        let { rowSelection } = this.state;
-        rowSelection.selectedRowKeys = ids;
-        this.setState({ rowSelection });
-
-    }
-
     componentDidMount () {
        this.fecthdata(); 
     }
     fecthdata () {
-        axios.get('http://localhost:8080/camera')
+        axios.get('http://localhost:8080/department')
             .then((response) => {
                 console.log(response);
-                this.setState({dataSource: response.data});
+                let data = response.data;
+                let dataArr = data.map((value) => 
+                {return {'label ': value.departmentName, 'value': ''+value.departmentID}});
+                this.setState({dataSource: dataArr});
             })
     }
-    deleteUser (id) {
-        axios.get('http://localhost:8080/camera/delete/'+id)
-            .then((response) => {
-                if (response.data) {
-                    console.log("success");
-                    this.fecthdata();
-                }
-            })
+    onChange (value) {
+        console.log(" department select change value",value);
+        this.setState({departmentID: value});
+        this.triggerChange(value);
+    }
+    componentWillReceiveProps (nextprops) {
+        if ('value' in nextprops) {
+            const value = nextprops.value;
+            this.setState({departmentID: value || ""})
+        }
+    }
+    triggerChange (value) {
+        let onChange = this.props.onChange;
+        if (onChange) {
+            onChange(value);
+        }
     }
     render() {
         console.log("---------------", this.state);
         return (  
-            <IceContainer>
-                <div>
-                    <Link to='/camera/add'><Icon type="add" /></Link>
-                </div>
-                <Table 
-                    rowSelection={this.state.rowSelection}
-                    primaryKey="cameraID"
-                    dataSource={this.state.dataSource||[]}>
-                    <Column title="名称" dataIndex="departmentName" ></Column>
-                    <Column title="地址" dataIndex="address" />
-                    <Column title="ip" dataIndex="ip" ></Column>
-                    <Column title="备注" dataIndex="remark" />
-                    <Column cell={(value, index, record) => { 
-                        return <div><span className="table_cell-option" onClick = {this.deleteUser.bind(this, record.accountID)}><Icon type="ashbin" /></span><span className="table_cell-option"><Icon type="edit" /></span></div>
-                            }
-                        }/>
-                </Table>
-            </IceContainer>
+          <Select {...this.props}
+                  dataSource={this.state.dataSource}
+                  value={this.state.value || ""}
+                  onChange={this.onChange.bind(this)} />
         )
     }
 }

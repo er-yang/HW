@@ -9,6 +9,7 @@ import {
 } from '@icedesign/form-binder';
 import axios from 'axios';
 import {browserHistory} from 'react-router';
+import DepartmentSelect from '../../components/departmentSelect';
 
 const { Row, Col } = Grid;
 export default class AddUser extends React.Component {
@@ -116,13 +117,9 @@ export default class AddUser extends React.Component {
                 </Col>
               <Col span="10">
                 <IceFormBinder name="departmentID">
-                  <Select
+                  <DepartmentSelect
                     size="large"
                     placeholder="请选择..."
-                    dataSource={[
-                      { label: '省级监控中心', value: '1' },
-                      { label: '县级监控中心', value: '2' },
-                    ]}
                   />
                 </IceFormBinder>
               </Col>
@@ -157,7 +154,7 @@ export default class AddUser extends React.Component {
                   validator={this.checkPasswd}
                 >
                   <Input
-                    htmlType="passWord"
+                    htmlType="password"
                     size="large"
                     placeholder="请重新输入新密码"
                   />
