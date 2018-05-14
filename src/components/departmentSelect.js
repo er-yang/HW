@@ -20,7 +20,8 @@ export default class DepartmentSelect extends Component {
                 console.log(response);
                 let data = response.data;
                 let dataArr = data.map((value) => 
-                {return {'label ': value.departmentName, 'value': ''+value.departmentID}});
+                {return {label: value.departmentName, value: ''+value.departmentID}});
+                console.log();
                 this.setState({dataSource: dataArr});
             })
     }
@@ -30,6 +31,7 @@ export default class DepartmentSelect extends Component {
         this.triggerChange(value);
     }
     componentWillReceiveProps (nextprops) {
+        console.log("props is change",nextprops);
         if ('value' in nextprops) {
             const value = nextprops.value;
             this.setState({departmentID: value || ""})
@@ -44,9 +46,10 @@ export default class DepartmentSelect extends Component {
     render() {
         console.log("---------------", this.state);
         return (  
-          <Select {...this.props}
+          <Select size="large"
+                  placeholder="请选择..."
                   dataSource={this.state.dataSource}
-                  value={this.state.value || ""}
+                  value={this.state.departmentID || ""}
                   onChange={this.onChange.bind(this)} />
         )
     }
