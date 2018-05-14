@@ -58,10 +58,10 @@ export default class MonitorCenter extends Component {
                     primaryKey="centerID"
                     dataSource={this.state.dataSource||[]}>
                     <Column title="名称" dataIndex="centerName" ></Column>
-                    <Column title="负责人" dataIndex="manager" />
+                    <Column title="负责人" dataIndex="accountName" />
                     <Column title="备注" dataIndex="remark" />
                     <Column cell={(value, index, record) => { 
-                        return <div><span className="table_cell-option" onClick = {this.deleteUser.bind(this, record.accountID)}><Icon type="ashbin" /></span><span className="table_cell-option"><Icon type="edit" /></span></div>
+                        return <div><span className="table_cell-option" onClick = {this.deleteUser.bind(this, record.centerID)}><Icon type="ashbin" /></span><span className="table_cell-option"><Icon type="edit" /></span></div>
                             }
                         }/>
                 </Table>

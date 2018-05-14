@@ -61,7 +61,7 @@ export default class Department extends Component {
                     <Column title="监控中心" dataIndex="centerID" />
                     <Column title="备注" dataIndex="remark" />
                     <Column cell={(value, index, record) => { 
-                        return <div><span className="table_cell-option" onClick = {this.deleteUser.bind(this, record.accountID)}><Icon type="ashbin" /></span><span className="table_cell-option"><Icon type="edit" /></span></div>
+                        return <div><span className="table_cell-option" onClick = {this.deleteUser.bind(this, record.departmentID)}><Icon type="ashbin" /></span><span className="table_cell-option"><Icon type="edit" /></span></div>
                             }
                         }/>
                 </Table>

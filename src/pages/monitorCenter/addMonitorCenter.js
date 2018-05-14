@@ -9,6 +9,7 @@ import {
 } from '@icedesign/form-binder';
 import axios from 'axios';
 import {browserHistory} from 'react-router';
+import UserSelect from '../../components/userSelect.js';
 
 const { Row, Col } = Grid;
 export default class AddMonitorCenter extends React.Component {
@@ -53,15 +54,15 @@ export default class AddMonitorCenter extends React.Component {
           ref="form"
         >
           <div style={styles.formContent}>
-            <h2 style={styles.formTitle}>添加摄像头</h2>
+            <h2 style={styles.formTitle}>添加监控中心</h2>
 
             <Row style={styles.formItem}>
               <Col span="3" style={styles.formLabel}>
                 中心名称：
                 </Col>
               <Col span="10">
-                <IceFormBinder name="centorName" required message="必填">
-                  <Input size="large" placeholder="请输入设备名" />
+                <IceFormBinder name="centerName" required message="必填">
+                  <Input size="large" placeholder="请输入中心名" />
                 </IceFormBinder>
                 <IceFormError name="centerName" />
               </Col>
@@ -69,48 +70,13 @@ export default class AddMonitorCenter extends React.Component {
 
             <Row style={styles.formItem}>
               <Col span="3" style={styles.formLabel}>
-                ip：
+                负责人：
                 </Col>
               <Col span="10">
-                <IceFormBinder name="ip" required message="必填">
-                  <Input size="large" placeholder="请输入通信地址" />
+                <IceFormBinder name="manager" required message="必填">
+                  <UserSelect placeholder="请选择···" />
                 </IceFormBinder>
-                <IceFormError name="ip" />
-              </Col>
-            </Row>
-
-
-            <Row style={styles.formItem}>
-              <Col span="3" style={styles.formLabel}>
-                经度：
-                </Col>
-              <Col span="10">
-                <IceFormBinder name="longitude">
-                  <Input size="large" placeholder="请输入经度" />
-                </IceFormBinder>
-                <IceFormError name="phone" />
-              </Col>
-            </Row>
-            <Row style={styles.formItem}>
-              <Col span="3" style={styles.formLabel}>
-                纬度：
-                </Col>
-              <Col span="10">
-                <IceFormBinder name="latitude">
-                  <Input size="large" placeholder="请输入纬度" />
-                </IceFormBinder>
-                <IceFormError name="latitude" />
-              </Col>
-            </Row>
-
-            <Row style={styles.formItem}>
-              <Col span="3" style={styles.formLabel}>
-                地址：
-                </Col>
-              <Col span="10">
-                <IceFormBinder name="address">
-                  <Input size="large" placeholder="请输入地址" />
-                </IceFormBinder>
+                <IceFormError name="manager" />
               </Col>
             </Row>
 

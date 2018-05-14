@@ -9,10 +9,11 @@ import {
 } from '@icedesign/form-binder';
 import axios from 'axios';
 import {browserHistory} from 'react-router';
+import TypeSelect from '../../components/typeSelect.js';
 import CenterSelect from '../../components/monitorCenterSelect';
 
 const { Row, Col } = Grid;
-export default class AddDepartment extends React.Component {
+export default class AddMonitorNode extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -28,13 +29,13 @@ export default class AddDepartment extends React.Component {
       } else {
         console.log('param is ', values);
         axios({
-          url: 'http://localhost:8080/department/save',
+          url: 'http://localhost:8080/monitorNode/save',
           method: 'post',
           data: values
         }).then((response) => {
           if (response.data) {
             console.log("success");
-            browserHistory.push('/department');
+            browserHistory.push('/monitorNode');
           }
         });
       }
@@ -43,9 +44,10 @@ export default class AddDepartment extends React.Component {
   formChange = (formValue) => {
     this.setState({value: formValue})
   }
+  
 
   render() {
-    return (<div className="user-form">
+    return (<div className="form">
       <IceContainer>
         <IceFormBinderWrapper
           value={this.state.value}
@@ -53,46 +55,55 @@ export default class AddDepartment extends React.Component {
           ref="form"
         >
           <div style={styles.formContent}>
-            <h2 style={styles.formTitle}>添加部门</h2>
+            <h2 style={styles.formTitle}>添加监控节点</h2>
 
             <Row style={styles.formItem}>
               <Col span="3" style={styles.formLabel}>
-                部门名称：
+                节点名称：
                 </Col>
               <Col span="10">
-                <IceFormBinder name="departmentName" required message="必填">
-                  <Input size="large" placeholder="请输入部门名" />
+                <IceFormBinder name="nodeName" required message="必填">
+                  <Input size="large" placeholder="请输入中心名" />
                 </IceFormBinder>
-                <IceFormError name="departmentName" />
+                <IceFormError name="nodeName" />
               </Col>
             </Row>
 
-            
             <Row style={styles.formItem}>
               <Col span="3" style={styles.formLabel}>
-                监控中心：
+                节点类型：
                 </Col>
               <Col span="10">
-                <IceFormBinder name="centerID">
-                  <CenterSelect
-                    size="large"
-                    placeholder="请选择..."
-                  />
+                <IceFormBinder name="typeID" required message="必填">
+                  <TypeSelect placeholder="请选择···" />
                 </IceFormBinder>
+                <IceFormError name="typeID" />
+              </Col>
+            </Row>
+            <Row style={styles.formItem}>
+              <Col span="3" style={styles.formLabel}>
+                所属监控中心：
+                </Col>
+              <Col span="10">
+                <IceFormBinder name="monitorCenterID" required message="必填">
+                  <CenterSelect placeholder="请选择···" />
+                </IceFormBinder>
+                <IceFormError name="moniterCenterID" />
               </Col>
             </Row>
 
-           <Row style={styles.formItem}>
+            <Row style={styles.formItem}>
               <Col span="3" style={styles.formLabel}>
                 备注：
                 </Col>
               <Col span="10">
-                <IceFormBinder name="remark">
-                  <Input size="large" placeholder="请输入备注名" />
+                <IceFormBinder
+                  name="remark">
+                  <Input size="large" placeholder="请输入备注" />
                 </IceFormBinder>
               </Col>
             </Row>
-          </div>
+         </div>
         </IceFormBinderWrapper>
 
         <Row style={{ marginTop: 20 }}>

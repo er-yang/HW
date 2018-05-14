@@ -7,7 +7,7 @@ import {Link} from 'react-router';
 
 const Column = Table.Column;
 
-export default class Camera extends Component {
+export default class MonitorNode extends Component {
 
     constructor() {
         super();
@@ -31,14 +31,14 @@ export default class Camera extends Component {
        this.fecthdata(); 
     }
     fecthdata () {
-        axios.get('http://localhost:8080/camera')
+        axios.get('http://localhost:8080/monitorNode')
             .then((response) => {
                 console.log(response);
                 this.setState({dataSource: response.data});
             })
     }
     deleteUser (id) {
-        axios.get('http://localhost:8080/camera/delete/'+id)
+        axios.get('http://localhost:8080/monitorNode/delete/'+id)
             .then((response) => {
                 if (response.data) {
                     console.log("success");
@@ -51,18 +51,19 @@ export default class Camera extends Component {
         return (  
             <IceContainer>
                 <div>
-                    <Link to='/camera/add'><Icon type="add" /></Link>
+                    <Link to='/monitorNode/add'><Icon type="add" /></Link>
                 </div>
                 <Table 
                     rowSelection={this.state.rowSelection}
-                    primaryKey="cameraID"
+                    primaryKey="nodeID"
                     dataSource={this.state.dataSource||[]}>
-                    <Column title="名称" dataIndex="name" ></Column>
-                    <Column title="地址" dataIndex="address" />
-                    <Column title="ip" dataIndex="ip" ></Column>
+                    <Column title="名称" dataIndex="nodeName" ></Column>
+                    <Column title="上级中心" dataIndex="centerName" />
+                    <Column title="类型" dataIndex="typeName" />
                     <Column title="备注" dataIndex="remark" />
+
                     <Column cell={(value, index, record) => { 
-                        return <div><span className="table_cell-option" onClick = {this.deleteUser.bind(this, record.cameraID)}><Icon type="ashbin" /></span><span className="table_cell-option"><Icon type="edit" /></span></div>
+                        return <div><span className="table_cell-option" onClick = {this.deleteUser.bind(this, record.nodeID)}><Icon type="ashbin" /></span><span className="table_cell-option"><Icon type="edit" /></span></div>
                             }
                         }/>
                 </Table>

@@ -56,7 +56,20 @@ const customAsideNavs = [
     text: '部门管理',
     to: '/department',
     icon: 'yonghu',
+  },{
+    text: '监控中心',
+    to: '/monitorCenter',
+    icon: 'yonghu',
+  },{
+    text: '监控类型',
+    to: '/monitorType',
+    icon: 'yonghu',
+  },{
+    text: '监控节点',
+    to: '/monitorNode',
+    icon: 'yonghu',
   },
+
   {
     text: '系统设置',
     to: '/setting',
