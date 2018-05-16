@@ -18,7 +18,7 @@ export default class UserSelect extends Component {
         axios.get('http://localhost:8080/user')
             .then((response) => {
                 console.log(response);
-                let data = response.data;
+                let data = response.data.data;
                 let dataArr = data.map((value) => 
                 {return {label: value.accountName, value: ''+value.accountID}});
                 this.setState({dataSource: dataArr});

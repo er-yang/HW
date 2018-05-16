@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Table, Pagination,Button,Icon} from '@icedesign/base';
+import {Table, Pagination,Button,Icon, Search, Breadcrumb} from '@icedesign/base';
 import IceContainer from '@icedesign/container';
 import DataBinder from '@icedesign/data-binder';
 import axios from 'axios';
@@ -16,7 +16,10 @@ export default class MonitorNode extends Component {
             rowSelection: {
                 onChange: this.rowOnChange.bind(this),
                 selectedRowKeys: []
-            }
+            },
+            total: 0, 
+            page: 0,
+            size: 10
 
         }
     }
@@ -34,7 +37,8 @@ export default class MonitorNode extends Component {
         axios.get('http://localhost:8080/monitorNode')
             .then((response) => {
                 console.log(response);
-                this.setState({dataSource: response.data});
+                var data = response.data;
+                this.setState({dataSource: data.data, total: data.total});
             })
     }
     deleteUser (id) {
@@ -49,6 +53,11 @@ export default class MonitorNode extends Component {
     render() {
         console.log("---------------", this.state);
         return (  
+            <div>
+                <IceContainer>
+                    <h2>监控节点</h2>
+                    <Search size="large" hasIcon inputWidth={280}/>
+                </IceContainer>
             <IceContainer>
                 <div>
                     <Link to='/monitorNode/add'><Icon type="add" /></Link>
@@ -67,7 +76,17 @@ export default class MonitorNode extends Component {
                             }
                         }/>
                 </Table>
+                <div style={{textAlign:"right", paddingTop: "26px"}}>
+            <Pagination
+              current={this.state.page}
+              pageSize={this.state.size}
+              total={this.state.total}
+              onChange={this.changePage}
+            />
+          </div>
+
             </IceContainer>
+            </div>
         )
     }
 }

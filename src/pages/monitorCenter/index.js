@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Table, Pagination,Button,Icon} from '@icedesign/base';
+import {Table, Pagination,Button,Icon, Search} from '@icedesign/base';
 import IceContainer from '@icedesign/container';
 import DataBinder from '@icedesign/data-binder';
 import axios from 'axios';
@@ -49,6 +49,12 @@ export default class MonitorCenter extends Component {
     render() {
         console.log("---------------", this.state);
         return (  
+            <div>
+                 <IceContainer>
+                    <h2>监控中心</h2>
+                    <Search size="large" hasIcon inputWidth={280}/>
+                </IceContainer>
+
             <IceContainer>
                 <div>
                     <Link to='/monitorCenter/add'><Icon type="add" /></Link>
@@ -66,6 +72,7 @@ export default class MonitorCenter extends Component {
                         }/>
                 </Table>
             </IceContainer>
+            </div>
         )
     }
 }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Table, Pagination,Button,Icon} from '@icedesign/base';
+import {Table, Pagination,Button,Icon, Search} from '@icedesign/base';
 import IceContainer from '@icedesign/container';
 import DataBinder from '@icedesign/data-binder';
 import axios from 'axios';
@@ -15,7 +15,10 @@ export default class Camera extends Component {
             dataSource: [],
             rowSelection: {
                 onChange: this.rowOnChange.bind(this),
-                selectedRowKeys: []
+                selectedRowKeys: [],
+                total: 0, 
+                page: 0,
+                size: 10
             }
 
         }
@@ -34,7 +37,8 @@ export default class Camera extends Component {
         axios.get('http://localhost:8080/camera')
             .then((response) => {
                 console.log(response);
-                this.setState({dataSource: response.data});
+                var data = response.data;
+                this.setState({dataSource: data.data, total: data.total});
             })
     }
     deleteUser (id) {
@@ -49,6 +53,12 @@ export default class Camera extends Component {
     render() {
         console.log("---------------", this.state);
         return (  
+            <div>
+                 <IceContainer>
+                    <h2>摄像头管理</h2>
+                    <Search size="large" hasIcon inputWidth={280}/>
+                </IceContainer>
+
             <IceContainer>
                 <div>
                     <Link to='/camera/add'><Icon type="add" /></Link>
@@ -66,7 +76,19 @@ export default class Camera extends Component {
                             }
                         }/>
                 </Table>
+            <div style={{textAlign:"right", paddingTop: "26px"}}>
+            <Pagination
+              current={this.state.page}
+              pageSize={this.state.size}
+              total={this.state.total}
+              onChange={this.changePage}
+            />
+          </div>
+
+
             </IceContainer>
+      
+            </div>
         )
     }
 }

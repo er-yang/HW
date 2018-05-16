@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Table, Pagination,Button,Icon} from '@icedesign/base';
+import {Table, Pagination,Button,Icon, Search} from '@icedesign/base';
 import IceContainer from '@icedesign/container';
 import DataBinder from '@icedesign/data-binder';
 import axios from 'axios';
@@ -49,6 +49,12 @@ export default class MonitorType extends Component {
     render() {
         console.log("---------------", this.state);
         return (  
+            <div>
+                 <IceContainer>
+                    <h2>节点类型</h2>
+                    <Search size="large" hasIcon inputWidth={280}/>
+                </IceContainer>
+
             <IceContainer>
                 <div>
                     <Link to='/monitorType/add'><Icon type="add" /></Link>
@@ -65,6 +71,7 @@ export default class MonitorType extends Component {
                         }/>
                 </Table>
             </IceContainer>
+            </div>
         )
     }
 }

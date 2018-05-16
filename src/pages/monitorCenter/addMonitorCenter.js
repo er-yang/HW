@@ -10,6 +10,7 @@ import {
 import axios from 'axios';
 import {browserHistory} from 'react-router';
 import UserSelect from '../../components/userSelect.js';
+import CenterSelect from '../../components/monitorCenterSelect.js';
 
 const { Row, Col } = Grid;
 export default class AddMonitorCenter extends React.Component {
@@ -65,6 +66,17 @@ export default class AddMonitorCenter extends React.Component {
                   <Input size="large" placeholder="请输入中心名" />
                 </IceFormBinder>
                 <IceFormError name="centerName" />
+              </Col>
+            </Row>
+            <Row style={styles.formItem}>
+              <Col span="3" style={styles.formLabel}>
+                父级监控中心：
+                </Col>
+              <Col span="10">
+                <IceFormBinder name="supCenterID" required message="必填">
+                  <CenterSelect placeholder="请选择···" />
+                </IceFormBinder>
+                <IceFormError name="supCenterID" />
               </Col>
             </Row>
 
