@@ -14,6 +14,7 @@
     "@icedesign/label": "^0.1.1",
     "@icedesign/layout": "^0.1.1",
     "@icedesign/menu": "^0.1.0",
+    "@icedesign/panel": "^0.1.1",
     "@icedesign/skin": "^0.1.0",
     "@icedesign/styled-menu": "^0.1.1",
     "axios": "^0.17.1",
@@ -27,6 +28,7 @@
     "react-document-title": "^2.0.3",
     "react-dom": "^16.3.2",
     "react-router": "^3.2.0",
+    "recharts": "^1.0.0-beta.10",
     "video.js": "^6.7.3"
   },
   "devDependencies": {
