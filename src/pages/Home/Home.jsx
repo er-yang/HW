@@ -34,7 +34,7 @@ export default class Home extends Component {
                     待处理
                   </IcePanel.Header>
                   <IcePanel.Body>
-                    <p>hhh hhh g</p>
+                    <p><p>巴南隧道1号</p>       <p>追尾</p>       <strong>待处理</strong></p>
                   </IcePanel.Body>
                 </IcePanel>
                 <div className="main-panel">

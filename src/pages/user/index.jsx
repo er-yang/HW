@@ -58,7 +58,7 @@ export default class User extends Component {
         return (  
             <div>
                  <IceContainer>
-                    <h2>摄像头管理</h2>
+                    <h2>用户管理</h2>
                     <Search size="large" hasIcon inputWidth={280}/>
                 </IceContainer>
 
