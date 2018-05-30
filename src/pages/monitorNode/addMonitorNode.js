@@ -21,20 +21,29 @@ export default class AddMonitorNode extends React.Component {
    }
 
   }
+  componentDidMount(){
+    let id = this.props.location.query.query;
+    if(id){
+         axios.get('http://localhost:8080/monitorNode/get/' + id)
+            .then((response) => {
+                var data = response.data;
+                this.setState({value: data});
+            })
+
+    }
+  }
 
  onSubmit = () => {
     this.refs.form.validateAll((errors, values) => {
       if (errors) {
        console.log('errors', errors); 
       } else {
-        console.log('param is ', values);
         axios({
           url: 'http://localhost:8080/monitorNode/save',
           method: 'post',
           data: values
         }).then((response) => {
           if (response.data) {
-            console.log("success");
             browserHistory.push('/monitorNode');
           }
         });
@@ -91,6 +100,30 @@ export default class AddMonitorNode extends React.Component {
                 <IceFormError name="moniterCenterID" />
               </Col>
             </Row>
+            <Row style={styles.formItem}>
+              <Col span="3" style={styles.formLabel}>
+                经度：
+                </Col>
+              <Col span="10">
+                <IceFormBinder name="longitude">
+                  <Input size="large" placeholder="请输入经度" />
+                </IceFormBinder>
+                <IceFormError name="phone" />
+              </Col>
+            </Row>
+            <Row style={styles.formItem}>
+              <Col span="3" style={styles.formLabel}>
+                纬度：
+                </Col>
+              <Col span="10">
+                <IceFormBinder name="latitude">
+                  <Input size="large" placeholder="请输入纬度" />
+                </IceFormBinder>
+                <IceFormError name="latitude" />
+              </Col>
+            </Row>
+
+
 
             <Row style={styles.formItem}>
               <Col span="3" style={styles.formLabel}>

@@ -9,6 +9,8 @@ import {
 import IceIcon from '@icedesign/icon';
 import './UserLogin.scss';
 import {browserHistory} from 'react-router';
+import axios from 'axios';
+
 
 const { Row, Col } = Grid;
 
@@ -43,12 +45,30 @@ export default class UserLogin extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.refs.form.validateAll((errors, values) => {
-      console.log('values', values, this);
-      browserHistory.push('/');
+      if(errors){
+        console.log("qingshuru");
+      }else {
+      this.login(values)
+      }
     });
   };
 
-  render() {
+  login(values) {
+    console.log("----------=======",values);
+      axios({
+                url: 'http://localhost:8080/login',
+                method: 'post',
+                data: values
+              }).then((response) => {
+                if (response.data) {
+                  debugger
+                  window.localStorage.setItem("token",response.data);
+                  console.log("success");
+                  browserHistory.push('/');
+                }
+              });
+        }
+    render() {
     return (
       <div style={styles.userLogin} className="user-login">
         <div
@@ -76,12 +96,12 @@ export default class UserLogin extends Component {
                       size="small"
                       style={styles.inputIcon}
                     />
-                    <IceFormBinder name="account" required message="必填">
+                    <IceFormBinder name="accountCode" required message="必填">
                       <Input maxLength={20} placeholder="会员名/邮箱/手机号" />
                     </IceFormBinder>
                   </Col>
                   <Col>
-                    <IceFormError name="account" />
+                    <IceFormError name="accountCode" />
                   </Col>
                 </Row>
 
@@ -92,12 +112,12 @@ export default class UserLogin extends Component {
                       size="small"
                       style={styles.inputIcon}
                     />
-                    <IceFormBinder name="password">
+                    <IceFormBinder name="passWord">
                       <Input htmlType="password" placeholder="密码" />
                     </IceFormBinder>
                   </Col>
                   <Col>
-                    <IceFormError name="account" />
+                    <IceFormError name="passWord" />
                   </Col>
                 </Row>
 

@@ -32,16 +32,16 @@ export default class CustomShapeBarChart extends Component {
         return (
             <BarChart width={600} height={300} data={data}
                 margin={{top: 20, right: 30, left: 20, bottom: 5}}>
-        <XAxis dataKey="name"/>
-        <YAxis/>
-        <CartesianGrid strokeDasharray="3 3"/>
-        <Bar dataKey="female" fill="#8884d8" shape={<TriangleBar/>} label={{ position: 'top' }}>
-            {
+                <XAxis dataKey="name"/>
+                <YAxis/>
+                <CartesianGrid strokeDasharray="3 3"/>
+                <Bar dataKey="female" fill="#8884d8" shape={<TriangleBar/>} label={{ position: 'top' }}>
+                {
                 data.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={colors[index % 20]}/>
                 ))
-            }
-        </Bar>
+                }
+                </Bar>
         </BarChart>
         );
     }

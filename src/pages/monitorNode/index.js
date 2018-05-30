@@ -9,8 +9,8 @@ const Column = Table.Column;
 
 export default class MonitorNode extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             dataSource: [],
             rowSelection: {
@@ -36,7 +36,6 @@ export default class MonitorNode extends Component {
     fecthdata () {
         axios.get('http://localhost:8080/monitorNode')
             .then((response) => {
-                console.log(response);
                 var data = response.data;
                 this.setState({dataSource: data.data, total: data.total});
             })
@@ -45,13 +44,11 @@ export default class MonitorNode extends Component {
         axios.get('http://localhost:8080/monitorNode/delete/'+id)
             .then((response) => {
                 if (response.data) {
-                    console.log("success");
                     this.fecthdata();
                 }
             })
     }
     render() {
-        console.log("---------------", this.state);
         return (  
             <div>
                 <IceContainer>
@@ -72,7 +69,8 @@ export default class MonitorNode extends Component {
                     <Column title="备注" dataIndex="remark" />
 
                     <Column cell={(value, index, record) => { 
-                        return <div><span className="table_cell-option" onClick = {this.deleteUser.bind(this, record.nodeID)}><Icon type="ashbin" /></span><span className="table_cell-option"><Icon type="edit" /></span></div>
+                        return <div><span className="table_cell-option" onClick = {this.deleteUser.bind(this, record.nodeID)}><Icon type="ashbin" /></span>
+                        <Link to={"/monitorNode/add?query="+record.nodeID}><span className="table_cell-option"><Icon type="edit" /></span></Link></div>
                             }
                         }/>
                 </Table>

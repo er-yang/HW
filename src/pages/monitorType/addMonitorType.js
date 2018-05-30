@@ -25,14 +25,12 @@ export default class AddMonitorType extends React.Component {
       if (errors) {
        console.log('errors', errors); 
       } else {
-        console.log('param is ', values);
         axios({
           url: 'http://localhost:8080/monitorType/save',
           method: 'post',
           data: values
         }).then((response) => {
           if (response.data) {
-            console.log("success");
             browserHistory.push('/monitorType');
           }
         });

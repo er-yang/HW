@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import {Table, Pagination,Button,Icon,Search} from '@icedesign/base';
 import IceContainer from '@icedesign/container';
 import DataBinder from '@icedesign/data-binder';
-import axios from 'axios';
 import {Link} from 'react-router';
 import './user.scss';
+import axios from 'axios';
 
 const Column = Table.Column;
 
@@ -37,7 +37,7 @@ export default class User extends Component {
        this.fecthdata(); 
     }
     fecthdata () {
-        axios.get('http://localhost:8080/user')
+        axios({url: 'http://localhost:8080/user', methode: "get"})
             .then((response) => {
                 console.log(response);
                 var data = response.data;
@@ -45,7 +45,8 @@ export default class User extends Component {
             })
     }
     deleteUser (id) {
-        axios.get('http://localhost:8080/user/delete/'+id)
+        axios({url:'http://localhost:8080/user/delete/'+id,
+              methode: "get"})
             .then((response) => {
                 if (response.data) {
                     console.log("success");

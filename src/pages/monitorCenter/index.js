@@ -33,7 +33,6 @@ export default class MonitorCenter extends Component {
     fecthdata () {
         axios.get('http://localhost:8080/monitorCenter')
             .then((response) => {
-                console.log(response);
                 this.setState({dataSource: response.data});
             })
     }
@@ -41,7 +40,6 @@ export default class MonitorCenter extends Component {
         axios.get('http://localhost:8080/monitorCenter/delete/'+id)
             .then((response) => {
                 if (response.data) {
-                    console.log("success");
                     this.fecthdata();
                 }
             })
