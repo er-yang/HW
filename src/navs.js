@@ -52,11 +52,11 @@ const customAsideNavs = [
     children: [
       {
         text: '权限管理',
-        to: '/base',
+        to: '/permission',
       },
       {
         text: '角色管理',
-        to: '/comment',
+        to: '/role',
       },
     ],
   },
