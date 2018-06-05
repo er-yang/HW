@@ -1,9 +1,7 @@
 // <!-- auto generated navs start -->
 const autoGenHeaderNavs = [];
 const autoGenAsideNavs = [
-  { text: 'page3', to: '/page3', icon: 'nav-list' },
   // { text: 'login', to: '/login', icon: 'nav-list' },
-  { text: '视频监控', to: '/page5', icon: 'nav-list' },
   // { text: 'Nav6', to: '/page6', icon: 'nav-list' },
 ];
 
@@ -36,14 +34,6 @@ const customAsideNavs = [
     text: '首页',
     to: '/',
     icon: 'home',
-  },{
-    text: '监控中心',
-    to: '/monitorCenter',
-    icon: 'yonghu',
-  },{
-    text: '监控节点',
-    to: '/monitorNode',
-    icon: 'yonghu',
   },
   {
     text: '系统设置',
@@ -108,6 +98,25 @@ const customAsideNavs = [
         to: '/analysis',
         icon: 'yonghu',
     }
+    ]
+  },
+{
+    text: "实时视频",
+    icon: "home",
+    children: [
+      {
+    text: '监控中心',
+    to: '/monitorCenter',
+    icon: 'yonghu',
+  }, {
+    text: '监控节点',
+    to: '/monitorNode',
+    icon: 'yonghu',
+  },{
+    text: "视频监控",
+    to: "/page5",
+    icon: "yonghu"
+  } 
     ]
   }
 
