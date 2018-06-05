@@ -69,7 +69,7 @@ export default class AddPermission extends React.Component {
 
             <Row style={styles.formItem}>
               <Col span="3" style={styles.formLabel}>
-                ip：
+                权限编号：
                 </Col>
               <Col span="10">
                 <IceFormBinder name="permissionCode" required message="必填">
@@ -78,18 +78,6 @@ export default class AddPermission extends React.Component {
                 <IceFormError name="permissionCode" />
               </Col>
             </Row>
-
-            <Row style={styles.formItem}>
-              <Col span="3" style={styles.formLabel}>
-                地址：
-                </Col>
-              <Col span="10">
-                <IceFormBinder name="address">
-                  <Input size="large" placeholder="请输入地址" />
-                </IceFormBinder>
-              </Col>
-            </Row>
-
             <Row style={styles.formItem}>
               <Col span="3" style={styles.formLabel}>
                 备注：

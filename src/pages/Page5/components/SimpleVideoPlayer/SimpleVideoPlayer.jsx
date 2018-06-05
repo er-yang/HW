@@ -5,6 +5,7 @@ import { enquireScreen } from 'enquire-js';
 
 import Video from './Video';
 import VideoList from './VideoList';
+import VideoPlayer from './videoPlayer';
 
 const { Col, Row } = Grid;
 
@@ -22,12 +23,13 @@ export default class SimpleVideoPlayer extends Component {
       currentVideo: {
         poster:
           'https://img.alicdn.com/tfs/TB1UctgfwmTBuNjy1XbXXaMrVXa-754-420.png',
-        title: '这里是示例视频1的视频标题',
-        duration: '10:54',
+        autoplay: true,
+        controls: true,
+        width: 400,
         sources: [
           {
-            src: 'http://vjs.zencdn.net/v/oceans.mp4',
-            type: 'video/mp4',
+            src: 'rtmp://localhost/live/stream',
+            type: 'rtmp/flv',
           },
         ],
       },
@@ -76,13 +78,9 @@ export default class SimpleVideoPlayer extends Component {
                 }}
               >
                 {!this.state.reloadVideo && (
-                  <Video
+                  <VideoPlayer
                     {...this.state.currentVideo}
-                    style={{
-                      ...styles.video,
-                      ...(isMobile ? styles.videoMobile : {}),
-                    }}
-                  />
+                       />
                 )}
               </div>
             </Col>
@@ -123,8 +121,6 @@ const mockVideoData = [
   {
     poster:
       'https://img.alicdn.com/tfs/TB1UctgfwmTBuNjy1XbXXaMrVXa-754-420.png',
-    title: '这里是示例视频1的视频标题',
-    duration: '10:54',
     sources: [
       {
         src: 'http://vjs.zencdn.net/v/oceans.mp4',
@@ -136,11 +132,10 @@ const mockVideoData = [
     poster:
       'https://img.alicdn.com/tfs/TB1qEJ4fqmWBuNjy1XaXXXCbXXa-754-420.png',
     title: '这里是示例视频2的视频标题',
-    duration: '03:54',
     sources: [
       {
-        src: 'http://vjs.zencdn.net/v/oceans.mp4',
-        type: 'video/mp4',
+        src: 'rtmp://localhost/live/stream',
+        type: 'rtmp/mp4',
       },
     ],
   },

@@ -1,0 +1,1 @@
+ffmpeg -re -i E:\Tool\ffmpeg\record\Sugar.mp4 -vcodec libx264 -preset:v ultrafast -tune:v zerolatency -acodec copy -f flv rtmp://localhost:1935/hls/mystream -loglevel quiet

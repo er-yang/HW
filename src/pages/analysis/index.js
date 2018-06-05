@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import {Table, Pagination,Button,Icon, Search} from '@icedesign/base';
-import {PieChart, Pie} from 'recharts';
+import {Table, Pagination,Button,Icon, Search, Select} from '@icedesign/base';
+import {BarChart,  Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Bar, Radar, RadarChart, PolarGrid,
+         PolarAngleAxis, PolarRadiusAxis} from 'recharts';
 import IceContainer from '@icedesign/container';
 import axios from 'axios';
 
@@ -12,26 +13,21 @@ export default class Analysis extends Component {
         super();
         this.state = {
             dataSource: [],
-            rowSelection: {
-                onChange: this.rowOnChange.bind(this),
-                selectedRowKeys: [],
-                total: 0, 
-                page: 0,
-                size: 10
+            typeData: []
             }
 
-        }
     }
 
     componentDidMount () {
        this.fecthdata(); 
     }
     fecthdata () {
-        axios.get('http://localhost:8080/camera')
+        axios.get('http://localhost:8080/accident/count')
             .then((response) => {
                 console.log(response);
-                var data = response.data;
-                this.setState({dataSource: data.data, total: data.total});
+                var accidentData = response.data.accident;
+                var typeData = response.data.typedata;
+                this.setState({dataSource: accidentData,typeData: typeData});
             })
     }
     render() {
@@ -40,7 +36,6 @@ export default class Analysis extends Component {
             <div>
                  <IceContainer>
                     <h2>分析</h2>
-                    <Search size="large" hasIcon inputWidth={280}/>
                     <Select
                     size="large"
                     placeholder="请选择..."
@@ -52,16 +47,21 @@ export default class Analysis extends Component {
                 </IceContainer>
 
             <IceContainer>
-                <LineChart width={730} height={250} data={data}
+                <BarChart width={730} height={250} data={this.state.dataSource}
                     margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="name" />
+                    <XAxis dataKey="nodeName" />
                     <YAxis />
                     <Tooltip />
                     <Legend />
-                    <Line type="monotone" dataKey="pv" stroke="#8884d8" />
-                    <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-                    </LineChart>
+                    <Bar type="monotone" dataKey="times" fill="#82ca9d" />
+                    </BarChart>
+               <RadarChart cx={300} cy={250} outerRadius={150} width={600} height={500} data={this.state.typeData}>
+                    <PolarGrid />
+                    <PolarAngleAxis dataKey="name" />
+                    <PolarRadiusAxis/>
+                    <Radar name="type" dataKey="times" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6}/>
+                    </RadarChart> 
            </IceContainer>
       
             </div>

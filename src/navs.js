@@ -95,7 +95,22 @@ const customAsideNavs = [
         icon: 'yonghu',
     }
     ]
+  },{
+    text: "事故分析",
+    icon: "home",
+    children: [
+      {
+        text: "事故列表",
+        to: '/accident',
+        icon: 'yonghu',
+    },  {
+        text: '事故分析',
+        to: '/analysis',
+        icon: 'yonghu',
+    }
+    ]
   }
+
 ];
 
 function transform(navs) {

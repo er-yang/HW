@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import "videojs-flash"
 export default class Video extends Component {
   static displayName = 'Video';
 
